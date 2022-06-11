@@ -33,8 +33,8 @@ const Card = () => {
 };
 
 const CardStyle = styled.div`
-  height: 300px;
-  max-width: 200px;
+  width: 250px;
+  padding: 0px 10px;
 `;
 
 const UserMetaInfo = styled.div`
@@ -50,8 +50,7 @@ const UserNickname = styled.div`
 `;
 
 const CardImage = styled.div`
-  width: 100%;
-  height: 200px;
+  height: 250px;
   background-color: grey;
   border-radius: 4px;
 `;
