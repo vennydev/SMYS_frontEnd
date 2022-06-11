@@ -36,6 +36,7 @@ function Login() {
                 // value={pwd}
                 // onChange={onChangePwd}
                 placeholder="비밀번호를 입력해주세요"
+                type="password"
                 required
               />
               
