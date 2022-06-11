@@ -10,7 +10,6 @@ const Card = () => {
         <AccountCircleIcon style={{ width: "32px", height: "32px" }} />
         <UserNickname>병아리콩</UserNickname>
       </UserMetaInfo>
-      <div></div>
 
       <CardImage className="img"></CardImage>
 

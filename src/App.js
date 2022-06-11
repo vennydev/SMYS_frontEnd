@@ -2,16 +2,16 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 // Components
 import Header from "./components/Header";
-import Detail from "./pages/detail/Detail";
+import Upload from "./pages/Upload";
+// import Detail from "./pages/detail/Detail";
 
 // Elements
-
 function App() {
   return (
     <div className="App">
       <Header />
-      <Detail />
-      <Routes></Routes>
+      <Upload />
+      {/* <Detail /> */}
     </div>
   );
 }

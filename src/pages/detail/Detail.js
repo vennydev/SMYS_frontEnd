@@ -1,31 +1,32 @@
-// module
 import styled from "styled-components";
 import "react-slideshow-image/dist/styles.css";
 import "./detail.css";
 
-// element
 import DetailComment from "./DetailComment";
 
 // Icon & material
 import { Fade } from "react-slideshow-image";
 import img1 from "./1.png";
-import imgs2 from "./2.webp";
+import img2 from "./2.webp";
+import img3 from "./3.png";
+import img4 from "./4.jpeg";
+import img5 from "./5.jpeg";
 
 const fadeImages = [
   {
     url: img1,
   },
   {
-    url: imgs2,
+    url: img2,
   },
   {
-    url: img1,
+    url: img3,
   },
   {
-    url: imgs2,
+    url: img4,
   },
   {
-    url: img1,
+    url: img5,
   },
 ];
 
