@@ -29,6 +29,12 @@
       "password": "bbbbb",
       "nickname": "ffff",
       "id": 5
+    },
+    {
+      "useremail": "hs421@aaa.com",
+      "password": "qweqwe",
+      "nickname": "hyungsuplee",
+      "id": 6
     }
   ]
 }

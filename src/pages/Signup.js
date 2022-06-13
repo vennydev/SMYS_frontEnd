@@ -18,7 +18,7 @@ function Signup() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(userInfo);
+    axios.post("http://localhost:5009/user-info", userInfo);
   };
 
   return (
