@@ -5,6 +5,10 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
   }
 
+  html {
+    height:1000vh;
+  }
+
   body {
     font-family: "Helvetica", "Arial", sans-serif;
     line-height: 1.5;
