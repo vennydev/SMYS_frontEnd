@@ -17,6 +17,7 @@ const Card = () => {
       <CardAction>
         <ActionWrapper>
           <BookmarkBorderIcon />
+
           <span>12</span>
         </ActionWrapper>
         <ActionWrapper>
@@ -30,12 +31,16 @@ const Card = () => {
         그린
       </CardText>
     </CardStyle>
+  
   );
 };
 
+
 const CardStyle = styled.div`
-  height: 300px;
-  max-width: 200px;
+  height: 500px;
+  max-width: 400px;
+  margin: 0px auto;
+  margin-top: 60px;
 `;
 
 const UserMetaInfo = styled.div`
@@ -51,8 +56,8 @@ const UserNickname = styled.div`
 `;
 
 const CardImage = styled.div`
-  width: 100%;
-  height: 200px;
+  width: 400px;
+  height: 400px;
   background-color: grey;
   border-radius: 4px;
 `;

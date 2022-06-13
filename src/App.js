@@ -2,19 +2,25 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import GlobalStyle from "./GlobalStyle";
 
 // import Components
-import Header from "./components/Header";
-
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
+import Main from "./pages/Main";
 // import Elements
-import Card from "./elements/Card";
 
 function App() {
+
+
   return (
-    <div className="App">
-      <GlobalStyle />
-      <Header />
-      <Card />
-    </div>
+    <Routes>
+
+      <Route path="/" element={<Main />}/ >
+        <Route path="/login" element={<Login />} />
+        <Route path="signup" element={<Signup />} />
+      
+
+      
+    </Routes>
   );
-}
+};
 
 export default App;
