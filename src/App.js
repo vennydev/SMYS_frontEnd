@@ -13,13 +13,8 @@ import Detail from "./pages/detail/Detail";
 function App() {
   return (
     <div>
-      <Login />
+      <Signup />
     </div>
-    // <Routes>
-    //   <Route path="/" element={<Main />}/ >
-    //     <Route path="/login" element={<Login />} />
-    //     <Route path="signup" element={<Signup />} />
-    // </Routes>
   );
 }
 

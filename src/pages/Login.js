@@ -1,13 +1,8 @@
-
 import React from "react";
 // import "./Login.css"
 
-
-
 import styled from "styled-components";
 function Login() {
-
-
   return (
     <MyDiv>
       <MyH1>Show me your space</MyH1>
@@ -15,7 +10,7 @@ function Login() {
         <MyUl>
           <MyLi>
             {/* <MyLabel htmlFor="user_id">아이디:</MyLabel> */}
-            <hr/>
+            <hr />
             <InputDiv>
               <MyInput
                 id="user_id"
@@ -24,10 +19,9 @@ function Login() {
                 placeholder="e-mail을 입력해주세요"
                 required
               />
-             
             </InputDiv>
           </MyLi>
-          
+
           <MyLi>
             {/* <MyLabel htmlFor="user_pwd">비밀번호:</MyLabel> */}
             <InputDiv>
@@ -39,7 +33,6 @@ function Login() {
                 type="password"
                 required
               />
-              
             </InputDiv>
           </MyLi>
         </MyUl>
@@ -47,29 +40,24 @@ function Login() {
       </form>
     </MyDiv>
   );
-};
-
-
-
+}
 
 export const MyDiv = styled.div`
   padding: 0px;
   text-align: center;
   height: 500px;
-  width: 450px; 
+  width: 450px;
   display: flex;
   flex-direction: column;
   justify-content: center;
 
   margin: 100px auto;
-  border: 1px solid #FDDA68;
+  border: 1px solid #fdda68;
   border-radius: 10px;
- 
-
 `;
 export const MyH1 = styled.h1`
   font-family: "Kdam Thmor Pro", sans-serif;
-  color: #8873F0;
+  color: #8873f0;
   font-size: 35px;
   padding: 30px;
   margin-top: -20px;
@@ -83,7 +71,7 @@ export const MyLi = styled.li`
   display: flex;
   align-items: center;
   font-size: 18px;
-  margin:0 auto;
+  margin: 0 auto;
 `;
 export const InputDiv = styled.div`
   width: 270px;
@@ -93,23 +81,23 @@ export const InputDiv = styled.div`
   display: block;
 `;
 export const MyInput = styled.input`
-width: 300px;
-height: 37px;
-margin-left: 21px;
-align-items: center;
+  width: 300px;
+  height: 37px;
+  margin-left: 21px;
+  align-items: center;
 
-:focus {
-  padding : 13px;
-  border: 0.5px solid #8a8a8a;
-  border-radius: 3px;
-  width: 0px auto;
-  outline: none;
-}
+  :focus {
+    padding: 13px;
+    border: 0.5px solid #8a8a8a;
+    border-radius: 3px;
+    width: 0px auto;
+    outline: none;
+  }
   ::placeholder {
     width: 300px;
     font-size: 15px;
-    
-    color: #8e8e8e;    
+
+    color: #8e8e8e;
   }
 `;
 
@@ -118,7 +106,7 @@ export const MyLabel = styled.label`
   height: 30px;
 `;
 export const SubmitInput = styled.input`
-  background-color: #8873F0;
+  background-color: #8873f0;
   border: none;
   color: white;
   width: 300px;
@@ -128,7 +116,5 @@ export const SubmitInput = styled.input`
   font-size: 12px;
   cursor: pointer;
 `;
-
-
 
 export default Login;

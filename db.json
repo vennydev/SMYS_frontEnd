@@ -1,0 +1,34 @@
+{
+  "user-info": [
+    {
+      "id": 0,
+      "useremail": "hs421@aaa.com",
+      "password": "asdasd",
+      "nickname": "leehs"
+    },
+    {
+      "id": 1,
+      "useremail": "ms425@aaa.com",
+      "password": "asdasd",
+      "nickname": "leehs"
+    },
+    {
+      "id": 3,
+      "useremail": "bk415@aaa.com",
+      "password": "asdasd",
+      "nickname": "leehs"
+    },
+    {
+      "useremail": "abc@aaa.com",
+      "password": "asdasxc",
+      "nickname": "leehs01",
+      "id": 4
+    },
+    {
+      "useremail": "asdzxcz@aaa.com",
+      "password": "bbbbb",
+      "nickname": "ffff",
+      "id": 5
+    }
+  ]
+}
