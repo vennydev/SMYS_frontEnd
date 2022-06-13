@@ -7,9 +7,9 @@ const Header = () => {
         <HeaderTitle>Show me your space</HeaderTitle>
       </NavLeft>
       <NavRight>
-        <button class="button is-white">Post</button>
-        <button class="button is-white">Signup</button>
-        <button class="button is-white">Login</button>
+        <button className="button is-white">Post</button>
+        <button className="button is-white">Signup</button>
+        <button className="button is-white">Login</button>
       </NavRight>
     </HeaderStyle>
   );
@@ -33,12 +33,12 @@ const HeaderTitle = styled.h1`
   font-family: "Kdam Thmor Pro", sans-serif;
 `;
 
-const NavLeft = styled.h1`
+const NavLeft = styled.div`
   cursor: pointer;
   padding: 4px 7px;
 `;
 
-const NavRight = styled.h1`
+const NavRight = styled.div`
   display: Flex;
   gap: 20px;
 `;

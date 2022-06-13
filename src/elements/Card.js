@@ -10,7 +10,6 @@ const Card = () => {
         <AccountCircleIcon style={{ width: "32px", height: "32px" }} />
         <UserNickname>병아리콩</UserNickname>
       </UserMetaInfo>
-      <div></div>
 
       <CardImage className="img"></CardImage>
 
@@ -41,7 +40,10 @@ const CardStyle = styled.div`
   max-width: 400px;
   margin: 0px auto;
   margin-top: 60px;
+
 `;
+// width: 250px;
+// padding: 0px 10px;
 
 const UserMetaInfo = styled.div`
   display: flex;
@@ -58,9 +60,11 @@ const UserNickname = styled.div`
 const CardImage = styled.div`
   width: 400px;
   height: 400px;
+
   background-color: grey;
   border-radius: 4px;
 `;
+// height: 250px;
 
 const CardAction = styled.div`
   display: flex;
