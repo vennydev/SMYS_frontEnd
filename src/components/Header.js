@@ -7,16 +7,16 @@ const Header = () => {
         <HeaderTitle>Show me your space</HeaderTitle>
       </NavLeft>
       <NavRight>
-        <button className="button is-white">Post</button>
-        <button className="button is-white">Signup</button>
-        <button className="button is-white">Login</button>
+        <ButtonRight className="button is-white">Post</ButtonRight>
+        <ButtonRight className="button is-white">Signup</ButtonRight>
+        <ButtonRight className="button is-white">Login</ButtonRight>
       </NavRight>
     </HeaderStyle>
   );
 };
 
 const HeaderStyle = styled.div`
-  padding: 30px 45px;
+  padding: 15px 45px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -29,7 +29,7 @@ const HeaderStyle = styled.div`
 
 const HeaderTitle = styled.h1`
   margin: 0;
-  font-size: 28px;
+  font-size: 20px;
   font-family: "Kdam Thmor Pro", sans-serif;
 `;
 
@@ -41,6 +41,10 @@ const NavLeft = styled.div`
 const NavRight = styled.div`
   display: Flex;
   gap: 20px;
+`;
+
+const ButtonRight = styled.div`
+  font-size: 13px;
 `;
 
 export default Header;
