@@ -1,5 +1,7 @@
+import React from "react";
 import styled from "styled-components";
 import { Outlet, useNavigate } from "react-router-dom";
+import { useCallback } from "react";
 
 const HeaderLogOff = () => {
   const navigate = useNavigate();
@@ -31,6 +33,63 @@ const HeaderLogOff = () => {
             }}
           >
             Signup
+          </ButtonRight>
+        </NavRight>
+      </HeaderStyle>
+      <Outlet />
+    </>
+  );
+};
+
+
+
+const HeaderLogOn = () => {
+  const navigate = useNavigate();
+  const [, updateState] = React.useState();
+  const forceUpdate = useCallback(()=> updateState({}),[]);
+
+  console.log("rendering...");
+
+  const logoutAction = (e) => {
+    alert("로그아웃")
+    navigate("/main")
+    localStorage.removeItem('jwt-token')
+    
+  };
+  return (
+    <>
+      <HeaderStyle className="header">
+        <NavLeft>
+          <HeaderTitle
+            onClick={() => {
+              navigate("/main");
+            }}
+          >
+            Show me your space
+          </HeaderTitle>
+        </NavLeft>
+        <NavRight>
+          <ButtonRight
+            className="button is-white"
+            onClick={() => {
+              navigate("/post");
+            }}
+          >
+            Post
+          </ButtonRight>
+          <ButtonRight
+            className="button is-white"
+            onClick={() => {
+              navigate("/mypage");
+            }}
+          >
+            MyPage
+          </ButtonRight>
+          <ButtonRight
+            className="button is-white"
+            onClick={logoutAction}
+          >
+            LogOut
           </ButtonRight>
         </NavRight>
       </HeaderStyle>
@@ -72,3 +131,5 @@ const ButtonRight = styled.div`
 `;
 
 export default HeaderLogOff;
+export { HeaderLogOn };
+

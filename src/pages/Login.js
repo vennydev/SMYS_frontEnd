@@ -32,9 +32,9 @@ function Login() {
   //e.preventDefault(); 
   //   // 추가 코드를 작성하여 DB를 제어하거나 state를 변경할 수 있습니다! 
   const handleAction = (e) => {
-    navigate("/")
+
     e.preventDefault();
-  
+    navigate("/main")
     axios({
       method: 'post',
       headers: {
@@ -50,6 +50,7 @@ function Login() {
         console.log(response);
         // console.log("data.token:", response.data.token);
         localStorage.setItem('jwt-token', response.data.token);
+        // navigate("/main")
       })
       .catch(function (error) {
         if (error.response) {
@@ -74,6 +75,7 @@ function Login() {
         console.log(error.config);
         console.log('에러4');
       });
+   
   };
 
   
