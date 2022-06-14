@@ -1,5 +1,13 @@
 import styled from "styled-components";
 
+// 재사용성
+// chiedren, props
+// <Header isMain=true/>
+// props.isMain
+
+// 분업
+// 페이지별로 기능 맡아서
+
 const Header = () => {
   return (
     <HeaderStyle className="header">

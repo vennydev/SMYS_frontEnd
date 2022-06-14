@@ -2,14 +2,12 @@ import React from "react";
 
 import styled from "styled-components";
 import Card from "../elements/Card";
-import Header from "../components/Header";
 import Header2 from "../components/Header2";
 import Grid from "@mui/material/Grid";
 
 const Main = () => {
   return (
     <>
-      <Header />
       <Header2 />
 
       <MypageStyle>

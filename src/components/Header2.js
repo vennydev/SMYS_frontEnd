@@ -1,23 +1,23 @@
-import React from 'react'
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 
-import { SubmitInput } from '../pages/Login';
+import { SubmitInput } from "../pages/Login";
 
 const Header2 = () => {
   return (
     <SubmitAll>
-      <Button type="submit" value="전체"/>
-      <Button type="submit" value="실내"/>
-      <Button type="submit" value="실외"/>
+      <Button type="submit" value="전체" />
+      <Button type="submit" value="실내" />
+      <Button type="submit" value="실외" />
     </SubmitAll>
-  )
-}
+  );
+};
 
 const SubmitAll = styled.div`
-margin: 10px auto;
-margin-top: 30px;
-display: flex;
-justify-content: center;
+  margin: 10px auto;
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
 `;
 
 const Button = styled.input`
@@ -36,7 +36,7 @@ const Button = styled.input`
 
   &:hover {
     background: rgb(249, 246, 250);
-    ;
+  }
 `;
 
 export default Header2;
