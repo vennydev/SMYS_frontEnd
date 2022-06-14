@@ -27,18 +27,20 @@ const Main = () => {
 
       <MypageStyle>
         <GridContainer>
-          {posts.map((post, id) => {
-            return (
-              <GridItem>
-                <Card
-                  title={post.title}
-                  content={post.content}
-                  category={post.category}
-                  nickname={post.nickname}
-                />
-              </GridItem>
-            );
-          })}
+          {posts &&
+            posts.map((post, id) => {
+              return (
+                <GridItem key={id}>
+                  <Card
+                    boardId={post.boardId}
+                    title={post.title}
+                    content={post.content}
+                    category={post.category}
+                    nickname={post.nickname}
+                  />
+                </GridItem>
+              );
+            })}
         </GridContainer>
       </MypageStyle>
     </>

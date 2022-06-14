@@ -38,7 +38,7 @@ function Signup() {
         alert("회원가입을 축하드립니다 :)");
         navigation("/login");
       } else {
-        alert("8~15자 영문, 숫자를 조합해주세요 :(");
+        alert("8~15자 영문, 숫자를 조합해주세요");
         pwRef.current.focus();
       }
     } else {
@@ -70,7 +70,6 @@ function Signup() {
             </InputDiv>
           </MyLi>
           <MyLi>
-            {/* <MyLabel htmlFor="user_id">아이디:</MyLabel> */}
             <hr />
             <InputDiv>
               <MyInput
@@ -83,12 +82,11 @@ function Signup() {
             </InputDiv>
           </MyLi>{" "}
           <MyLi>
-            {/* <MyLabel htmlFor="user_id">아이디:</MyLabel> */}
             <hr />
             <InputDiv>
               <MyInput
                 defaultValue={password}
-                placeholder="8-15자리의 영문, 특수문자, 숫자조합"
+                placeholder="8-15자리의 영문, 숫자조합"
                 onChange={handleChange}
                 name="password"
                 type="password"

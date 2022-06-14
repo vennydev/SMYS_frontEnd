@@ -2,8 +2,14 @@ import styled from "styled-components";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import { useNavigate } from "react-router-dom";
 
-const Card = ({ title, content, category, nickname }) => {
+const Card = ({ boardId, title, content, category, nickname }) => {
+  const navigate = useNavigate();
+  const handleImageClick = () => {
+    navigate(`/board/${boardId}`);
+  };
+
   return (
     <CardStyle>
       <UserMetaInfo>
@@ -11,7 +17,7 @@ const Card = ({ title, content, category, nickname }) => {
         <UserNickname>{nickname}</UserNickname>
       </UserMetaInfo>
 
-      <CardImage className="img"></CardImage>
+      <CardImage onClick={handleImageClick} className="img"></CardImage>
 
       <CardAction>
         <ActionWrapper>
@@ -50,7 +56,7 @@ const UserNickname = styled.div`
   font-weight: 600;
 `;
 
-const CardImage = styled.img`
+const CardImage = styled.div`
   height: 210px;
   background-color: grey;
   border-radius: 4px;

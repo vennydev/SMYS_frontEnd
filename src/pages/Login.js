@@ -24,7 +24,6 @@ function Login() {
   };
 
   const handleAction = (e) => {
-    navigate("/");
     e.preventDefault();
 
     axios({
