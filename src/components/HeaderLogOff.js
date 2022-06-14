@@ -52,8 +52,9 @@ const HeaderLogOn = () => {
 
   const logoutAction = (e) => {
     alert("로그아웃")
-    navigate("/main")
+    
     localStorage.removeItem('jwt-token')
+    window.location.replace("/main")
     
   };
   return (

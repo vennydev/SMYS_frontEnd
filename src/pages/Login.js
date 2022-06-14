@@ -34,7 +34,8 @@ function Login() {
   const handleAction = (e) => {
 
     e.preventDefault();
-    navigate("/main")
+    // navigate("/main")
+  
     axios({
       method: 'post',
       headers: {
@@ -50,6 +51,7 @@ function Login() {
         console.log(response);
         // console.log("data.token:", response.data.token);
         localStorage.setItem('jwt-token', response.data.token);
+        window.location.replace("/main")
         // navigate("/main")
       })
       .catch(function (error) {
