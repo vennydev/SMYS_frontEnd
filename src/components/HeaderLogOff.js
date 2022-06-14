@@ -51,7 +51,7 @@ const HeaderLogOn = () => {
   console.log("rendering...");
 
   const logoutAction = (e) => {
-    alert("로그아웃")
+    alert("로그아웃 되셨습니다")
     
     localStorage.removeItem('jwt-token')
     window.location.replace("/main")

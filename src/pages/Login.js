@@ -11,7 +11,7 @@ import styled from "styled-components";
 
 function Login() {
   const navigate = useNavigate();
-
+  
 
   const [loginInfo, setLoginInfo] = React.useState({
     useremail: "",
@@ -25,7 +25,7 @@ function Login() {
     const {value, name} = e.target;
     setLoginInfo({...loginInfo, [name]: value});
     // console.log(setLoginInfo); //password
-    console.log(e.target.value);
+    
   };
 
 
@@ -35,7 +35,7 @@ function Login() {
 
     e.preventDefault();
     // navigate("/main")
-  
+    alert("로그인 되셨습니다.")
     axios({
       method: 'post',
       headers: {
