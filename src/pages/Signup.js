@@ -47,7 +47,7 @@ function Signup() {
     }
   };
 
-  // axios.post("http://3.39.223.175/api/user/signup", userInfo);
+  axios.post("http://3.39.223.175/api/user/signup", userInfo);
   // alert("회원가입 성공!");
 
   return (
