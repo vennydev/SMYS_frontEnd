@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import TagFacesIcon from "@mui/icons-material/TagFaces";
 import InputUnstyled from "@mui/base/InputUnstyled";
-import "./detail.css";
+import "./board.css";
 import Divider from "../../elements/Divider";
 import CommentsList from "./CommentsList";
 

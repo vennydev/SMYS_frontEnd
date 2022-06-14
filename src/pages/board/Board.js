@@ -1,8 +1,7 @@
 import styled from "styled-components";
 import "react-slideshow-image/dist/styles.css";
-import "./detail.css";
-
-import DetailComment from "./DetailComment";
+import "./board.css";
+import BoardComment from "./BoardComment";
 
 // Icon & material
 import { Fade } from "react-slideshow-image";
@@ -52,7 +51,7 @@ const Detail = () => {
           아기에서 어린이 정도의 단계이다.
         </DetailInfoTextArea>
 
-        <DetailComment></DetailComment>
+        <BoardComment></BoardComment>
       </DetailLayout>
     </DetailStyle>
   );

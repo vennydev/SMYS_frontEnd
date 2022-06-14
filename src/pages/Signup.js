@@ -5,7 +5,6 @@ import { useNavigate, useMatch } from "react-router-dom";
 
 function Signup() {
   const params = useMatch("/signup");
-  console.log(params);
   const [userInfo, setUserInfo] = useState({
     useremail: "",
     nickname: "",

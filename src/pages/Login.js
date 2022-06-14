@@ -1,7 +1,6 @@
 import React from "react";
-// import "./Login.css"
-
 import styled from "styled-components";
+
 function Login() {
   return (
     <MyDiv>
@@ -9,13 +8,10 @@ function Login() {
       <form>
         <MyUl>
           <MyLi>
-            {/* <MyLabel htmlFor="user_id">아이디:</MyLabel> */}
             <hr />
             <InputDiv>
               <MyInput
                 id="user_id"
-                // value={id}
-                // onChange={onChangeId}
                 placeholder="e-mail을 입력해주세요"
                 required
               />
@@ -23,12 +19,9 @@ function Login() {
           </MyLi>
 
           <MyLi>
-            {/* <MyLabel htmlFor="user_pwd">비밀번호:</MyLabel> */}
             <InputDiv>
               <MyInput
                 id="user_pwd"
-                // value={pwd}
-                // onChange={onChangePwd}
                 placeholder="비밀번호를 입력해주세요"
                 type="password"
                 required
