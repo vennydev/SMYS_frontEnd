@@ -1,6 +1,32 @@
+import { Key } from "@mui/icons-material";
+import axios from "axios";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
+
+
 const Header = () => {
+  // if (
+  //   window.location.pathname === "/login" ||
+  //   window.location.pathname === "/signup"
+  // )
+    
+const navigate= useNavigate();
+const token = localStorage.getItem('jwt-token')
+console.log(localStorage.getItem('jwt-token'));
+
+
+  const logoutAction = (e) => {
+    navigate("/")
+    localStorage.removeItem('jwt-token')
+
+
+  };
+
+
+
+
   return (
     <HeaderStyle className="header">
       <NavLeft>
@@ -8,8 +34,12 @@ const Header = () => {
       </NavLeft>
       <NavRight>
         <ButtonRight className="button is-white">Post</ButtonRight>
-        <ButtonRight className="button is-white">Signup</ButtonRight>
-        <ButtonRight className="button is-white">Login</ButtonRight>
+        <ButtonRight 
+        onClick={() => { navigate('/signup') }} className="button is-white">Signup</ButtonRight>
+        <ButtonRight className="button is-white"
+        onClick={() => { navigate('/login') }}>Login</ButtonRight>
+        <ButtonRight className="button is-white"
+        onClick={logoutAction}>Logout</ButtonRight>
       </NavRight>
     </HeaderStyle>
   );

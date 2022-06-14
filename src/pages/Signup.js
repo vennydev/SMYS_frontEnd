@@ -3,7 +3,7 @@ import React from "react";
 
 
 import styled from "styled-components";
-function Login() {
+function Signup() {
 
 
   return (
@@ -151,10 +151,9 @@ export const SubmitInput = styled.input`
   text-decoration: none;
   text-align: center;
   font-size: 12px;
-  hover: silver;
   cursor: pointer;
 `;
 
 
 
-export default Login;
+export default Signup;
