@@ -3,12 +3,12 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 
-const Card = () => {
+const Card = ({ title, content, category, nickname }) => {
   return (
     <CardStyle>
       <UserMetaInfo>
         <AccountCircleIcon style={{ width: "32px", height: "32px" }} />
-        <UserNickname>병아리콩</UserNickname>
+        <UserNickname>{nickname}</UserNickname>
       </UserMetaInfo>
 
       <CardImage className="img"></CardImage>
@@ -25,10 +25,7 @@ const Card = () => {
         </ActionWrapper>
       </CardAction>
 
-      <CardText>
-        싱그러운 초록이들과 화이트 침구로 시원한 침실분위기로 바꿔봤어요~~ 밝은
-        그린
-      </CardText>
+      <CardText>{content}</CardText>
     </CardStyle>
   );
 };
@@ -53,10 +50,14 @@ const UserNickname = styled.div`
   font-weight: 600;
 `;
 
-const CardImage = styled.div`
+const CardImage = styled.img`
   height: 210px;
   background-color: grey;
   border-radius: 4px;
+  cursor: pointer;
+  :hover {
+    filter: blur(radius);
+  }
 `;
 
 const CardAction = styled.div`

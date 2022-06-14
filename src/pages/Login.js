@@ -1,105 +1,79 @@
 import { Token } from "@mui/icons-material";
 import axios from "axios";
 import React from "react";
-import {useNavigate} from "react-router-dom";
-
+import { useNavigate } from "react-router-dom";
 
 // import { useDispatch } from "react-redux";
 // import "./Login.css"
 import styled from "styled-components";
 
-
 function Login() {
   const navigate = useNavigate();
-
 
   const [loginInfo, setLoginInfo] = React.useState({
     useremail: "",
     password: "",
   });
 
-  const{ useremail, password} = loginInfo;
- 
+  const { useremail, password } = loginInfo;
+
   const handleChange = (e) => {
     e.preventDefault();
-    const {value, name} = e.target;
-    setLoginInfo({...loginInfo, [name]: value});
-    // console.log(setLoginInfo); //password
-    console.log(e.target.value);
+    const { value, name } = e.target;
+    setLoginInfo({ ...loginInfo, [name]: value });
   };
 
-
-  //e.preventDefault(); 
-  //   // 추가 코드를 작성하여 DB를 제어하거나 state를 변경할 수 있습니다! 
   const handleAction = (e) => {
-    navigate("/")
+    navigate("/");
     e.preventDefault();
-  
+
     axios({
-      method: 'post',
+      method: "post",
       headers: {
-            'Authorization': localStorage.getItem('jwt-token'),
-          },
-      url: 'http://3.39.223.175/api/user/signin', 
+        Authorization: localStorage.getItem("jwt-token"),
+      },
+      url: "http://3.39.223.175/api/user/signin",
       data: {
         useremail: loginInfo.useremail,
-        password: loginInfo.password
-      }
+        password: loginInfo.password,
+      },
     })
-    .then((response) => {
-        console.log(response);
-        // console.log("data.token:", response.data.token);
-        localStorage.setItem('jwt-token', response.data.token);
+      .then((response) => {
+        localStorage.setItem("jwt-token", response.data.token);
       })
       .catch(function (error) {
         if (error.response) {
-          // 요청이 이루어졌으며 서버가 2xx의 범위를 벗어나는 상태 코드로 응답했습니다.
           console.log(error.response.data);
           console.log(error.response.status);
-          console.log('에러1');
-          // console.log(error.response.headers);
-        }
-        else if (error.request) {
-          // 요청이 이루어 졌으나 응답을 받지 못했습니다.
-          // `error.request`는 브라우저의 XMLHttpRequest 인스턴스 또는
-          // Node.js의 http.ClientRequest 인스턴스입니다.
+          console.log("에러1");
+        } else if (error.request) {
           console.log(error.request);
-          console.log('에러2');
-        }
-        else {
-          // 오류를 발생시킨 요청을 설정하는 중에 문제가 발생했습니다.
-          console.log('Error', error.message);
-          console.log('에러3');
+          console.log("에러2");
+        } else {
+          console.log("Error", error.message);
+          console.log("에러3");
         }
         console.log(error.config);
-        console.log('에러4');
+        console.log("에러4");
       });
   };
 
-  
-    //입력 값 정합성 체크 후 login API 요청
-    //form tag에 재렌더링 막을 메서드 추가한 함수를 붙여줌
   return (
     <MyDiv>
       <MyH1>Show me your space</MyH1>
-      <form  onSubmit={handleAction}>
+      <form onSubmit={handleAction}>
         <MyUl>
           <MyLi>
             <hr />
             <InputDiv>
               <MyInput
-              defaultValue={loginInfo.useremail}
-              //name은 key값
-              name = "useremail"
+                defaultValue={loginInfo.useremail}
+                name="useremail"
                 onChange={handleChange}
-                // id="user_id"
-            
-                // onChange={onChangeId}
                 placeholder="e-mail을 입력해주세요"
                 autoComplete="on"
                 required
               />
-
             </InputDiv>
           </MyLi>
 
@@ -109,9 +83,8 @@ function Login() {
                 defaultValue={loginInfo.password}
                 name="password"
                 onChange={handleChange}
-
                 // id="user_pwd"
-               
+
                 // onChange={onChangePwd}
                 placeholder="비밀번호를 입력해주세요"
                 type="password"

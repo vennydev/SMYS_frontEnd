@@ -10,6 +10,8 @@ import img2 from "./2.webp";
 import img3 from "./3.png";
 import img4 from "./4.jpeg";
 import img5 from "./5.jpeg";
+import { axios } from "axios";
+import { useEffect } from "react";
 
 const fadeImages = [
   {

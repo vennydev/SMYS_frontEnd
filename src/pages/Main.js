@@ -1,69 +1,44 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
 
 import styled from "styled-components";
 import Card from "../elements/Card";
 import Header2 from "../components/Header2";
 import Grid from "@mui/material/Grid";
+import axios from "axios";
 
 const Main = () => {
+  const [posts, setPosts] = useState(null);
+  useEffect(() => {
+    const fetchBoards = async () => {
+      try {
+        const response = await axios.get("http://3.39.223.175/api/board");
+        setPosts(response.data.boards);
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    fetchBoards();
+  }, []);
+  console.log(posts);
   return (
     <>
       <Header2 />
 
       <MypageStyle>
         <GridContainer>
-          <GridItem>
-            <Card />
-          </GridItem>
-          <GridItem>
-            <Card />
-          </GridItem>
-          <GridItem>
-            <Card />
-          </GridItem>
-          <GridItem>
-            <Card />
-          </GridItem>
-          <GridItem>
-            <Card />
-          </GridItem>
-          <GridItem>
-            <Card />
-          </GridItem>
-          <GridItem>
-            <Card />
-          </GridItem>
-          <GridItem>
-            <Card />
-          </GridItem>
-        </GridContainer>
-
-        <GridContainer>
-          <GridItem>
-            <Card />
-          </GridItem>
-          <GridItem>
-            <Card />
-          </GridItem>
-          <GridItem>
-            <Card />
-          </GridItem>
-          <GridItem>
-            <Card />
-          </GridItem>
-          <GridItem>
-            <Card />
-          </GridItem>
-          <GridItem>
-            <Card />
-          </GridItem>
-          <GridItem>
-            <Card />
-          </GridItem>
-          <GridItem>
-            <Card />
-          </GridItem>
+          {posts.map((post, id) => {
+            return (
+              <GridItem>
+                <Card
+                  title={post.title}
+                  content={post.content}
+                  category={post.category}
+                  nickname={post.nickname}
+                />
+              </GridItem>
+            );
+          })}
         </GridContainer>
       </MypageStyle>
     </>
