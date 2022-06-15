@@ -9,44 +9,30 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Mypage from "./pages/Mypage";
 import Board from "./pages/board/Board";
-import Detail from "./pages/Detail";
 import Post from "./pages/Post";
-
-
-
 
 function App() {
   const [is_login, setIsLogin] = useState(false);
 
-
   // const token = localStorage.getItem('jwt-token')
   // console.log("token : ", token);
 
-
-  useEffect (() => {
-    const token = localStorage.getItem('jwt-token')
+  useEffect(() => {
+    const token = localStorage.getItem("jwt-token");
     console.log(token);
 
-    token==null?setIsLogin(false):setIsLogin(true)
+    token == null ? setIsLogin(false) : setIsLogin(true);
   }, []);
-
-
 
   return (
     <div>
       <Routes>
         {is_login ? (
           <Route path="/" element={<HeaderLogOn />}>
-            {/* 메인페이지 */}
             <Route path="main" element={<Main />} />
-
-            {/* 게시물 올리기 페이지 */}
             <Route path="post" element={<Post />} />
-
-            {/* 게시글 상세 조회 페이지 - 게시물 id parameter 필요*/}
             <Route path="board" element={<Board />} />
-
-            {/* 마이페이지 - 유저 id parameter 필요*/}
+            <Route path="board/:boardId" element={<Board />} />
             <Route path="mypage" element={<Mypage />} />
           </Route>
         ) : (
@@ -59,8 +45,6 @@ function App() {
       </Routes>
     </div>
   );
-
-
 }
 
 export default App;
