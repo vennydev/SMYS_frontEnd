@@ -6,9 +6,11 @@ import Card from "../elements/Card";
 import Header2 from "../components/Header2";
 import Grid from "@mui/material/Grid";
 import axios from "axios";
+import { set } from "immer/dist/internal";
 
 const Main = () => {
   const [posts, setPosts] = useState(null);
+  // const [index, setIndex] = useState( category1, category2);
   useEffect(() => {
     const fetchBoards = async () => {
       try {
@@ -20,10 +22,68 @@ const Main = () => {
     };
     fetchBoards();
   }, []);
+
+  // const totalList = () => {
+  //   const idx_num = 0;
+  //   console.log(posts[idx_num]);
+  // }
+
+  // const inSideList = () => {
+  //   // catergory 1
+  //   const category = 1
+  //   const insideItem = posts.filter((item, index) => {
+  //     console.log(typeof item.category)
+  //     if (item.caterogy == 1) {
+  //       console.log("test");
+  //     }
+  //   })
+  //   //  console.log(insideItem);
+  // }
+  const category = () => {
+
+    console.log("posts : ", posts);
+  }
+
+  const category1 = () => {
+
+    let oneCategory = [];
+    for (let i in posts) {
+      if (posts[i].category === 1) {
+        oneCategory.push(posts[i])
+      }
+    }
+    console.log("categort1 : ", oneCategory);
+  }
+
+  const category2 = () => {
+
+    let twoCategory = [];
+    for (let i in posts) {
+      if (posts[i].category === 2) {
+        twoCategory.push(posts[i])
+      }
+    }
+    console.log("categort2 : ", twoCategory);
+  }
+
+  // console.log("categort1 : ", oneCategory);
+  // console.log("categort2 : ", twoCategory);
+
+  // const outSideList = () => {
+  //   const idx_num = 2;
+  //   console.log(posts[idx_num]);
+  // }
   console.log(posts);
   return (
     <>
-      <Header2 />
+      <SubmitAll>
+        <Button
+          onClick={category} type="submit" value="전체" />
+        <Button
+          onClick={category1} type="submit" value="실내" />
+        <Button
+          onClick={category2} type="submit" value="실외" />
+      </SubmitAll>
 
       <MypageStyle>
         <GridContainer>
@@ -85,6 +145,33 @@ const GridItem = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+`;
+
+//header 2 
+const SubmitAll = styled.div`
+  margin: 10px auto;
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+`;
+
+const Button = styled.input`
+  background-color: white;
+  border-radius: 4px;
+  border: none;
+  color: grey;
+  width: 150px;
+  margin: 20px;
+  height: 30px;
+  text-decoration: none;
+  text-align: center;
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
+
+  &:hover {
+    background: rgb(249, 246, 250);
+  }
 `;
 
 export default Main;
