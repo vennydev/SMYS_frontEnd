@@ -45,9 +45,9 @@ function Signup() {
       alert("유효한 이메일 형식이 아닙니다 :(");
       emailRef.current.focus();
     }
+    axios.post("http://3.39.223.175/api/user/signup", userInfo);
   };
 
-  axios.post("http://3.39.223.175/api/user/signup", userInfo);
   // alert("회원가입 성공!");
 
   return (
@@ -178,7 +178,7 @@ const SubmitInput = styled.input`
   background-color: #8873f0;
   border: none;
   color: white;
-  width: 300px;
+  width: 400px;
   height: 45px;
   text-decoration: none;
   text-align: center;

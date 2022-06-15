@@ -37,6 +37,7 @@ const Main = () => {
                     content={post.content}
                     category={post.category}
                     nickname={post.nickname}
+                    image1={post.image1}
                   />
                 </GridItem>
               );

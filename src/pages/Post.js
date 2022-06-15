@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import location from "react-route/lib/location";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -13,159 +13,148 @@ import { TextareaAutosize } from "@mui/base";
 import { ImageList } from "@mui/material";
 import { ImageListItem } from "@mui/material";
 import { TextField } from "@mui/material";
+import { Update } from "@mui/icons-material";
 
 const Post = () => {
   const [imageFile, setImageFile] = useState([]);
-  const [previewImg, setPreviewImg] = useState([]);
   const [post, setPost] = useState({
     title: "",
     category: "",
     content: "",
-    image: {},
+    image1: "",
   });
-  const { title, category, content, image } = post;
+
+  const { title, category, content } = post;
   const navigate = useNavigate();
 
-  const saveImage = (e) => {
-    // image 미리보기
-    const imageLists = e.target.files[0];
-    let reader = new FileReader();
-
-    if (imageLists) {
-      reader.readAsDataURL(imageLists);
-    }
-
-    reader.onloadend = () => {
-      const previewImgUrl = reader.result;
-      if (previewImgUrl) {
-        setPreviewImg([...previewImg, previewImgUrl]);
-      }
-    };
-
-    if (previewImg.length >= 5) {
-      previewImg.slice(0, 4);
-      alert("그만 올리세요!");
-    }
-
-    const files = e.target.files;
-    const formData = new FormData();
-    for (let i = 0; i < files.length; i++) {
-      formData.append(`image${i}`, files[i]);
-      console.log(formData);
-      setImageFile([...imageFile, formData]);
-    }
-    console.log(imageFile);
-    // formData.forEach((a, id) => console.log(a));
-  };
-  console.log(post);
   const handleChange = (e) => {
     const { name, value } = e.target;
     setPost({ ...post, [name]: value });
   };
+
+  const saveImage = (e) => {
+    const selectedImageLists = e.target.files;
+    for (let i = 0; i < selectedImageLists.length; i++) {
+      const nowImageUrl = URL.createObjectURL(selectedImageLists[i]);
+      setPost({ ...post, image1: nowImageUrl });
+    }
+    // const arr1 = ["image1", "image2", "image3", "image4", "image5"];
+    // const arr2 = newImageURLList.map((url, idx) => {
+    //   return { [arr1[idx]]: url };
+    // });
+  };
+  console.log(post);
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (post && image) {
-      if (post.title && post.category && post.content) {
-        alert("게시글 작성 완료");
-        // navigate("/main");
-        // setPost({
-        //   title: "",
-        //   category: "",
-        //   content: "",
-        // });
-        // setImage([]);
-      } else {
-        alert("게시할 내용을 모두 채워주세요");
-      }
-    }
-    // const formData = new FormData();
-    // formData.append("image", nowPostedImageList[i]);
+    const currentKey = localStorage.getItem("jwt-token");
+    axios
+      .post("http://3.39.223.175/api/board", post, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${currentKey}`,
+        },
+      })
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    alert("게시물 등록 완료");
+    navigate("/main");
   };
 
   return (
-    <div>
-      <form encType="multipart/form-data" onSubmit={handleSubmit}>
-        <PostStyle>
-          <ColumnWrap>
-            <ColumnLeft>
-              <label htmlFor="input-file" onChange={saveImage}>
-                이미지업로드
-                <FileInput
-                  type="file"
-                  accept="image/*"
-                  id="input-file"
-                  multiple
-                />
-              </label>
-
-              <ImageList
-                sx={{ width: 500, height: 450 }}
-                cols={3}
-                rowHeight={164}
-              >
-                {previewImg.map((item, id) => (
-                  <ImageListItem key={id}>
-                    <img src={item} alt={item} loading="lazy" />
-                  </ImageListItem>
-                ))}
-              </ImageList>
-            </ColumnLeft>
-
-            <ColumnRight>
-              <Box sx={{ maxWidth: 150 }}>
-                <FormControl fullWidth>
-                  <InputLabel id="demo-simple-select-label">장소</InputLabel>
-                  <Select
-                    labelId="demo-simple-select-label"
-                    id="demo-simple-select"
-                    label="장소"
-                    value={category}
-                    name="category"
-                    onChange={handleChange}
-                  >
-                    <MenuItem value={1} selected>
-                      실내
-                    </MenuItem>
-                    <MenuItem value={2}>실외</MenuItem>
-                  </Select>
-                </FormControl>
-              </Box>
-              <TextField
-                placeholder="제목"
-                name="title"
-                value={title}
-                onChange={handleChange}
+    <PostStyle>
+      <FormStyle encType="multipart/form-data" onSubmit={handleSubmit}>
+        <ColumnWrap>
+          <ColumnLeft>
+            <Label htmlFor="input-file" onChange={saveImage}>
+              이미지업로드
+              <FileInput
+                multiple
+                type="file"
+                accept="image/*"
+                id="input-file"
+                style={{ display: "none" }}
               />
+            </Label>
 
-              <TextareaAutosize
-                maxRows="4"
-                aria-label="maximum height"
-                placeholder="내용"
-                name="content"
-                value={content}
-                style={{
-                  width: "100%",
-                  height: "50%",
-                  resize: "none",
-                  fontSize: "22px",
-                  padding: "16.5px 14px",
-                  boder: "#fff",
-                }}
-                onChange={handleChange}
-              />
-            </ColumnRight>
-          </ColumnWrap>
-        </PostStyle>
-        <button type="submit">제출</button>
-      </form>
-    </div>
+            {/* <ImageList
+              sx={{ width: "100%", height: 350 }}
+              cols={3}
+              rowHeight={164}
+            >
+              {previewImg.map((item, id) => (
+                <ImageListItem key={id}>
+                  <img src={item} alt={item} loading="lazy" />
+                </ImageListItem>
+              ))}
+            </ImageList> */}
+          </ColumnLeft>
+
+          <ColumnRight>
+            <Box sx={{ maxWidth: 150 }}>
+              <FormControl fullWidth>
+                <InputLabel id="demo-simple-select-label">장소</InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  label="장소"
+                  value={category}
+                  name="category"
+                  onChange={handleChange}
+                >
+                  <MenuItem value={1} selected>
+                    실내
+                  </MenuItem>
+                  <MenuItem value={2}>실외</MenuItem>
+                </Select>
+              </FormControl>
+            </Box>
+            <TextField
+              placeholder="제목"
+              name="title"
+              value={title}
+              onChange={handleChange}
+            />
+
+            <TextareaAutosize
+              maxRows="4"
+              aria-label="maximum height"
+              placeholder="내용"
+              name="content"
+              value={content}
+              style={{
+                width: "100%",
+                height: "100%",
+                resize: "none",
+                fontSize: "16px",
+                padding: "16.5px 14px",
+                border: "#fff",
+              }}
+              onChange={handleChange}
+            />
+          </ColumnRight>
+        </ColumnWrap>
+        <SubmitInput type="submit" value="게시물 등록"></SubmitInput>
+      </FormStyle>
+    </PostStyle>
   );
 };
 
 const PostStyle = styled.div`
-  margin-top: 50px;
+  margin: 0 auto;
+  margin-top: 80px;
   width: 100%;
-  height: 500px;
+  max-width: 1000px;
+  height: 600px;
+`;
+
+const FormStyle = styled.form`
+  background-color: #e0e0e0;
+  padding: 30px 10px;
+  height: 100%;
 `;
 
 const ColumnWrap = styled.div`
@@ -174,6 +163,22 @@ const ColumnWrap = styled.div`
   width: 90%;
   display: flex;
   justify-content: space-between;
+`;
+
+const Label = styled.label`
+  background-color: #eaedef;
+  cursor: pointer;
+  height: 100%;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s linear;
+  color: #bcbcbc;
+  :hover {
+    background-color: #bcbcbc;
+    color: white;
+  }
 `;
 
 const FileInput = styled.input`
@@ -186,6 +191,7 @@ const ColumnRight = styled.div`
   width: 45%;
   display: Flex;
   flex-direction: column;
+  gap: 15px;
   justify-content: space-between;
 `;
 
@@ -211,15 +217,29 @@ const ImageButton = styled.button`
   }
 `;
 
-const PostFileInput = styled.input`
+const SubmitInput = styled.input`
   display: inline-block;
   margin-bottom: 10px;
+  margin-top: 50px;
   height: 40px;
   padding: 0 10px;
   vertical-align: middle;
+  text-decoration: none;
   border: 1px solid #dddddd;
-  width: 100%;
-  color: #999999;
+  width: 300px;
+  cursor: pointer;
+  background-color: #8873f0;
+  transition: all 0.2s linear;
+  position: relative;
+  right: -50%;
+  transform: translateX(-50%);
+  border-radius: 4px;
+  color: white;
+  font-weight: 700;
+  font-size: 14px;
+  :hover {
+    background-color: silver;
+  }
 `;
 
 export default Post;

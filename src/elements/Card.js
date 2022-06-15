@@ -4,12 +4,11 @@ import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { useNavigate } from "react-router-dom";
 
-const Card = ({ boardId, title, content, category, nickname }) => {
+const Card = ({ boardId, content, image1, nickname }) => {
   const navigate = useNavigate();
   const handleImageClick = () => {
     navigate(`/board/${boardId}`);
   };
-
   return (
     <CardStyle>
       <UserMetaInfo>
@@ -17,12 +16,15 @@ const Card = ({ boardId, title, content, category, nickname }) => {
         <UserNickname>{nickname}</UserNickname>
       </UserMetaInfo>
 
-      <CardImage onClick={handleImageClick} className="img"></CardImage>
+      <CardImage
+        onClick={handleImageClick}
+        className="img"
+        src={image1}
+      ></CardImage>
 
       <CardAction>
         <ActionWrapper>
           <BookmarkBorderIcon />
-
           <span>12</span>
         </ActionWrapper>
         <ActionWrapper>
@@ -56,7 +58,7 @@ const UserNickname = styled.div`
   font-weight: 600;
 `;
 
-const CardImage = styled.div`
+const CardImage = styled.img`
   height: 210px;
   background-color: grey;
   border-radius: 4px;
