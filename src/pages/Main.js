@@ -6,9 +6,11 @@ import Card from "../elements/Card";
 import Header2 from "../components/Header2";
 import Grid from "@mui/material/Grid";
 import axios from "axios";
+// import { set } from "immer/dist/internal";
 
 const Main = () => {
   const [posts, setPosts] = useState(null);
+  // const [index, setIndex] = useState( category1, category2);
   useEffect(() => {
     const fetchBoards = async () => {
       try {
@@ -22,7 +24,11 @@ const Main = () => {
   }, []);
   return (
     <>
-      <Header2 />
+      <SubmitAll>
+        <Button onClick={category} type="submit" value="전체" />
+        <Button onClick={category1} type="submit" value="실내" />
+        <Button onClick={category2} type="submit" value="실외" />
+      </SubmitAll>
 
       <MypageStyle>
         <GridContainer>
@@ -85,6 +91,33 @@ const GridItem = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+`;
+
+//header 2
+const SubmitAll = styled.div`
+  margin: 10px auto;
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+`;
+
+const Button = styled.input`
+  background-color: white;
+  border-radius: 4px;
+  border: none;
+  color: grey;
+  width: 150px;
+  margin: 20px;
+  height: 30px;
+  text-decoration: none;
+  text-align: center;
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
+
+  &:hover {
+    background: rgb(249, 246, 250);
+  }
 `;
 
 export default Main;
