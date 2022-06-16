@@ -32,6 +32,7 @@ function App() {
             <Route path="post" element={<Post />} />
             <Route path="board" element={<Board />} />
             <Route path="board/:boardId" element={<Board />} />
+            <Route path="board/:boardId/comment" element={<Board />} />
             <Route path="mypage" element={<Mypage />} />
           </Route>
         ) : (

@@ -4,29 +4,66 @@ import InputUnstyled from "@mui/base/InputUnstyled";
 import "./board.css";
 import Divider from "../../elements/Divider";
 import CommentsList from "./CommentsList";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { Button } from "@mui/material";
-import { axios } from "axios";
+import axios from "axios";
 import { useParams } from "react-router-dom";
 
 const DetailComment = ({ boardId }) => {
-  const [comment, setComment] = useState("");
+  const [newComment, setNewComment] = useState("");
   const [commentArray, setCommentArray] = useState([]);
+  const [viewComment, setViewComment] = useState([]);
 
   const updateComment = (e) => {
-    setComment(e.target.value);
+    setNewComment(e.target.value);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (comment === "") {
+    const currentKey = localStorage.getItem("jwt-token");
+    if (newComment === "") {
       alert("내용을 입력해주세요");
+    } else {
+      axios
+        .post(
+          `http://3.39.223.175/api/board/${boardId}/comment/`,
+          { comment: newComment },
+          {
+            headers: {
+              "Content-Type": `application/json`,
+              Authorization: `Bearer ${currentKey}`,
+            },
+          }
+        )
+        .then((response) => {
+          console.log(response);
+          const nicknameData = response.data.createComment.nickname;
+          const commentData = response.data.createComment.comment;
+          setCommentArray((commentValueList) => [
+            ...commentValueList,
+            {
+              nickname: nicknameData,
+              comment: commentData,
+            },
+          ]);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+      setNewComment("");
     }
-    setCommentArray((commentValueList) => [...commentValueList, comment]);
-    setComment("");
-    axios.put(`http://3.39.223.175/api/board/${boardId}`);
   };
+  useEffect(() => {
+    const fetchComments = async () => {
+      const response = await axios.get(
+        `http://3.39.223.175/api/board/${boardId}/comment/`
+      );
+      setViewComment(...viewComment, response.data.comments);
+    };
+    fetchComments();
+  }, []);
+  console.log(viewComment);
   return (
     <DetailCommentStyle>
       <Counts>
@@ -52,19 +89,28 @@ const DetailComment = ({ boardId }) => {
           }}
           placeholder="댓글달기"
           type="text"
-          value={comment}
+          value={newComment}
           onChange={updateComment}
         ></InputUnstyled>
         <SubmitInput type="submit" value="게시물 등록"></SubmitInput>
       </CommentForm>
-      {commentArray.map((comment) => {
-        console.log(comment);
-      })}
+      {viewComment &&
+        viewComment.map((comment, idx) => {
+          return (
+            <CommentsList
+              key={idx}
+              nickname={comment.nickname}
+              comment={comment.comment}
+            />
+          );
+        })}
     </DetailCommentStyle>
   );
 };
 
-const DetailCommentStyle = styled.div``;
+const DetailCommentStyle = styled.div`
+  height: 100%;
+`;
 
 const Counts = styled.div`
   display: Flex;

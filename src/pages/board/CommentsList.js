@@ -1,12 +1,12 @@
 import styled from "styled-components";
 import { Avatar } from "@mui/material";
 
-const CommentsList = () => {
+const CommentsList = ({ nickname, comment }) => {
   return (
     <CommentsListStyle>
       <Comment>
-        <strong>이형섭섭</strong>
-        <div>오 처음 알았어요</div>
+        <strong>{nickname}</strong>
+        <div>{comment}</div>
         <Avatar
           style={{
             width: "35px",
@@ -22,7 +22,11 @@ const CommentsList = () => {
   );
 };
 
-const CommentsListStyle = styled.ul``;
+const CommentsListStyle = styled.ul`
+  border: 1px solid #eaedef;
+  margin-bottom: 10px;
+  padding: 4px;
+`;
 
 const Comment = styled.li`
   padding-left: 55px;

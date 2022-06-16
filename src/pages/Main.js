@@ -25,9 +25,9 @@ const Main = () => {
   return (
     <>
       <SubmitAll>
-        <Button onClick={category} type="submit" value="전체" />
-        <Button onClick={category1} type="submit" value="실내" />
-        <Button onClick={category2} type="submit" value="실외" />
+        <Button type="submit" value="전체" />
+        <Button type="submit" value="실내" />
+        <Button type="submit" value="실외" />
       </SubmitAll>
 
       <MypageStyle>
