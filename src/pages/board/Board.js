@@ -34,6 +34,9 @@ const Board = (props) => {
     <DetailStyle>
       {board && (
         <DetailLayout>
+          <DetailImageWrap>
+            <DetailImage src={board.image1} alt="" />
+          </DetailImageWrap>
           <DetailInfoTitle>{board.title}</DetailInfoTitle>
 
           <DetailInfoTextArea name="" id="" cols="30" rows="10">
@@ -60,6 +63,7 @@ const DetailLayout = styled.div`
 
 const DetailInfoTitle = styled.div`
   font-size: 22px;
+  font-weight: 700;
   margin-bottom: 10px;
 `;
 
@@ -67,12 +71,15 @@ const DetailInfoTextArea = styled.p`
   width: 100%;
   margin-bottom: 50px;
 `;
-
-const CardImage = styled.img`
-  height: 210px;
-  border-radius: 4px;
+const DetailImageWrap = styled.div`
+  width: 100%;
 `;
 
-// const CommentForm = styled.div`
-// `;
+const DetailImage = styled.img`
+  width: 100%;
+  background-size: cover;
+  border-radius: 4px;
+  margin-bottom: 10px;
+`;
+
 export default Board;

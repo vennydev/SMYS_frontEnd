@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import location from "react-route/lib/location";
 import { useNavigate } from "react-router-dom";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
@@ -18,14 +18,14 @@ import { TextField } from "@mui/material";
 import { Update } from "@mui/icons-material";
 
 const Post = () => {
-  const [imageFile, setImageFile] = useState([]);
+  const [previewURL, setPreviewURL] = useState([]);
   const [post, setPost] = useState({
     title: "",
     category: "",
     content: "",
     image1: "",
   });
-
+  const imageRef = useRef(null);
   const { title, category, content } = post;
   const navigate = useNavigate();
 
@@ -33,14 +33,26 @@ const Post = () => {
     const { name, value } = e.target;
     setPost({ ...post, [name]: value });
   };
+  // 이미지 미리보기
+  // const preview = (selectedFile) => {
+  //   if (!selectedFile) return false;
+  //   const reader = new FileReader();
+  //   const imgLabel = document.querySelector(".img_label");
+  //   reader.onLoad = () => {
+  //     console.log(reader.result);
+  //     imgLabel.style.backgroundImage = `url(${reader.result})`;
+  //   };
+  //   reader.readAsDataURL(selectedFile[0]);
+  // };
 
   const uploadFB = async (e) => {
+    const selectedFile = e.target.files;
     const uploaded_file = await uploadBytes(
-      ref(storage, `images/${e.target.files[0].name}`),
-      e.target.files[0]
+      ref(storage, `images/${selectedFile[0].name}`),
+      selectedFile[0]
     );
     const downloaded_URL = await getDownloadURL(
-      ref(storage, `images/${e.target.files[0].name}`)
+      ref(storage, `images/${selectedFile[0].name}`)
     );
     setPost({ ...post, image1: downloaded_URL });
   };
@@ -70,7 +82,12 @@ const Post = () => {
       <FormStyle encType="multipart/form-data" onSubmit={handleSubmit}>
         <ColumnWrap>
           <ColumnLeft>
-            <Label htmlFor="input-file" onChange={uploadFB}>
+            <Label
+              htmlFor="input-file"
+              onChange={uploadFB}
+              ref={imageRef}
+              className="img_label"
+            >
               이미지업로드
               <FileInput
                 multiple

@@ -19,7 +19,7 @@ function App() {
 
   useEffect(() => {
     const token = localStorage.getItem("jwt-token");
-    console.log(token);
+    console.log(`토큰이 있을까요 없을까요? : {token}`);
 
     token == null ? setIsLogin(false) : setIsLogin(true);
   }, []);

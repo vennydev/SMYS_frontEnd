@@ -4,7 +4,6 @@ import styled from "styled-components";
 import { useNavigate, useMatch } from "react-router-dom";
 
 function Signup() {
-  const params = useMatch("/signup");
   const [userInfo, setUserInfo] = useState({
     useremail: "",
     nickname: "",
@@ -14,7 +13,7 @@ function Signup() {
   const navigation = useNavigate();
   const emailRef = useRef(null);
   const pwRef = useRef(null);
-  const pw2Ref = useRef(null);
+  const pwRef2 = useRef(null);
 
   // 이메일 유효성 검사
   const emailRegExp =
@@ -29,14 +28,19 @@ function Signup() {
     const { value, name } = e.target;
     setUserInfo({ ...userInfo, [name]: value });
   };
-
+  console.log(userInfo);
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(useremail);
     if (emailRegExp.test(useremail)) {
       if (pwRegExp.test(password)) {
-        alert("회원가입을 축하드립니다 :)");
-        navigation("/login");
+        if (password === checkpassword) {
+          alert("회원가입을 축하드립니다 :)");
+          navigation("/login");
+        } else {
+          pwRef2.current.focus();
+          alert("비밀번호를 일치시켜주세요");
+        }
       } else {
         alert("8~15자 영문, 숫자를 조합해주세요");
         pwRef.current.focus();
@@ -64,7 +68,6 @@ function Signup() {
                 placeholder="example@aaaa.com"
                 onChange={handleChange}
                 name="useremail"
-                required
                 ref={emailRef}
               />
             </InputDiv>
@@ -77,7 +80,6 @@ function Signup() {
                 placeholder="닉네임"
                 onChange={handleChange}
                 name="nickname"
-                required
               />
             </InputDiv>
           </MyLi>{" "}
@@ -91,7 +93,6 @@ function Signup() {
                 name="password"
                 type="password"
                 ref={pwRef}
-                required
               />
             </InputDiv>
           </MyLi>
@@ -102,9 +103,8 @@ function Signup() {
                 onChange={handleChange}
                 name="checkpassword"
                 placeholder="비밀번호 확인"
+                ref={pwRef2}
                 type="password"
-                ref={pw2Ref}
-                required
               />
             </InputDiv>
           </MyLi>
