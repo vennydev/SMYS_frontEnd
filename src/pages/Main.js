@@ -6,7 +6,7 @@ import Card from "../elements/Card";
 import Header2 from "../components/Header2";
 import Grid from "@mui/material/Grid";
 import axios from "axios";
-import { set } from "immer/dist/internal";
+// import { set } from "immer/dist/internal";
 
 const Main = () => {
   const [posts, setPosts] = useState(null);
