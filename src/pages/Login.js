@@ -22,7 +22,7 @@ function Login() {
     const { value, name } = e.target;
     setLoginInfo({ ...loginInfo, [name]: value });
   };
-
+  console.log(loginInfo);
   const handleAction = (e) => {
     e.preventDefault();
     // navigate("/main")
@@ -87,9 +87,6 @@ function Login() {
                 defaultValue={loginInfo.password}
                 name="password"
                 onChange={handleChange}
-                // id="user_pwd"
-
-                // onChange={onChangePwd}
                 placeholder="비밀번호를 입력해주세요"
                 type="password"
                 required

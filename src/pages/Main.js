@@ -20,7 +20,6 @@ const Main = () => {
     };
     fetchBoards();
   }, []);
-  console.log(posts);
   return (
     <>
       <Header2 />

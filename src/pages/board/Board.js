@@ -11,17 +11,15 @@ import BoardComment from "./BoardComment";
 
 const Board = (props) => {
   const [board, setBoard] = useState(null);
-  const { state } = useLocation();
-  console.log(state);
   const params = useParams();
   const boardId = Number(params.boardId);
+
   useEffect(() => {
     const fetchBoard = async () => {
       try {
         const response = await axios.get(
           `http://3.39.223.175/api/board/${boardId}`
         );
-        console.log(response.data.boardfind);
         setBoard(response.data.boardfind);
       } catch (e) {
         console.log(e);
@@ -43,7 +41,7 @@ const Board = (props) => {
             {board.content}
           </DetailInfoTextArea>
 
-          <BoardComment></BoardComment>
+          <BoardComment boardId={boardId}></BoardComment>
         </DetailLayout>
       )}
     </DetailStyle>
