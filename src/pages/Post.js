@@ -2,6 +2,8 @@ import styled from "styled-components";
 import { useEffect, useState } from "react";
 import location from "react-route/lib/location";
 import { useNavigate } from "react-router-dom";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { storage } from "../shared/firebase";
 import axios from "axios";
 
 import Box from "@mui/material/Box";
@@ -32,18 +34,17 @@ const Post = () => {
     setPost({ ...post, [name]: value });
   };
 
-  const saveImage = (e) => {
-    const selectedImageLists = e.target.files;
-    for (let i = 0; i < selectedImageLists.length; i++) {
-      const nowImageUrl = URL.createObjectURL(selectedImageLists[i]);
-      setPost({ ...post, image1: nowImageUrl });
-    }
-    // const arr1 = ["image1", "image2", "image3", "image4", "image5"];
-    // const arr2 = newImageURLList.map((url, idx) => {
-    //   return { [arr1[idx]]: url };
-    // });
+  const uploadFB = async (e) => {
+    const uploaded_file = await uploadBytes(
+      ref(storage, `images/${e.target.files[0].name}`),
+      e.target.files[0]
+    );
+    const downloaded_URL = await getDownloadURL(
+      ref(storage, `images/${e.target.files[0].name}`)
+    );
+    setPost({ ...post, image1: downloaded_URL });
   };
-  console.log(post);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const currentKey = localStorage.getItem("jwt-token");
@@ -69,7 +70,7 @@ const Post = () => {
       <FormStyle encType="multipart/form-data" onSubmit={handleSubmit}>
         <ColumnWrap>
           <ColumnLeft>
-            <Label htmlFor="input-file" onChange={saveImage}>
+            <Label htmlFor="input-file" onChange={uploadFB}>
               이미지업로드
               <FileInput
                 multiple
@@ -79,7 +80,6 @@ const Post = () => {
                 style={{ display: "none" }}
               />
             </Label>
-
             {/* <ImageList
               sx={{ width: "100%", height: 350 }}
               cols={3}

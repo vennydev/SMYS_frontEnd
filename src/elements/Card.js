@@ -9,6 +9,7 @@ const Card = ({ boardId, content, image1, nickname }) => {
   const handleImageClick = () => {
     navigate(`/board/${boardId}`);
   };
+
   return (
     <CardStyle>
       <UserMetaInfo>
