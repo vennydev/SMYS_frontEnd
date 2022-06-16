@@ -26,7 +26,7 @@ function Login() {
   const handleAction = (e) => {
     e.preventDefault();
     // navigate("/main")
-    alert("로그인 되셨습니다.");
+  
     axios({
       method: "post",
       headers: {
@@ -43,22 +43,27 @@ function Login() {
         // console.log("data.token:", response.data.token);
         localStorage.setItem("jwt-token", response.data.token);
         window.location.replace("/main");
+        alert("로그인 되셨습니다.");
         // navigate("/main")
       })
       .catch(function (error) {
+
         if (error.response) {
           console.log(error.response.data);
           console.log(error.response.status);
           console.log("에러1");
+      
         } else if (error.request) {
           console.log(error.request);
           console.log("에러2");
-        } else {
+        } else if (error.message) {
           console.log("Error", error.message);
           console.log("에러3");
+        } else {
+          console.log(error.config);
+          console.log("에러4")
         }
-        console.log(error.config);
-        console.log("에러4");
+        alert("다시 확인해주세요.");
       });
   };
 
