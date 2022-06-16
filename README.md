@@ -47,8 +47,9 @@ framework
 
 - 댓글 목록 조회, 추가, 수정, 삭제
 
-# :tv: 데모영상
+# :tv: 유투브 
 
-<img src=""/>
+(https://www.youtube.com/watch?v=bVNPAp5qS2Q)
 
 # :blossom: 노션링크
+https://www.notion.so/4-SA-10d2f2e0e96947a8b0eb8237690e0606
